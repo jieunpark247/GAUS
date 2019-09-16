@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glab.app.controller.adbWriteController">
+   <children>
+      <AnchorPane prefHeight="644.0" prefWidth="1000.0" stylesheets="@gaus.css">
+         <children>
+            <TextField fx:id="input_adb_cmd" layoutX="160.0" layoutY="109.0" onAction="#inputAction" prefHeight="29.0" prefWidth="510.0" promptText="adb 명령어를 입력해주세요" />
+            <Button fx:id="input_adb" layoutX="678.0" layoutY="109.0" mnemonicParsing="false" onAction="#inputAction" prefHeight="21.0" prefWidth="72.0" text="input" />
+            <TextArea fx:id="input_result" layoutX="160.0" layoutY="172.0" prefHeight="407.0" prefWidth="669.0" wrapText="true" />
+            <Button fx:id="clear_adb" layoutX="756.0" layoutY="109.0" onAction = "#clearAction" mnemonicParsing="false" prefHeight="29.0" prefWidth="72.0" text="clear" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

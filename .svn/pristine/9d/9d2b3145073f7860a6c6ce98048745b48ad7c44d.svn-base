@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glab.app.controller.PathController">
+   <children>
+      <AnchorPane id="background" prefHeight="200.0" prefWidth="200.0" stylesheets="@gaus.css">
+         <children>
+         <TitledPane animated="false" collapsible="false" prefHeight="400.0" prefWidth="600.0" text="Path Setting">
+            <content>
+               <Pane id="background" prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                     <Label layoutX="116.0" layoutY="76.0" text="Adb Path" textFill="black" />
+                     <Label layoutX="64.0" layoutY="137.0" text="ScreenShot Path" textFill="black" />
+                     <Label layoutX="116.0" layoutY="203.0" text="Log Path" textFill="black" />
+                     <TextField fx:id="path_adbFld" layoutX="211.0" layoutY="71.0" prefHeight="29.0" prefWidth="324.0" />
+                     <TextField fx:id="path_shotFld" layoutX="211.0" layoutY="132.0" prefHeight="29.0" prefWidth="324.0" />
+                     <TextField fx:id="path_logFld" layoutX="211.0" layoutY="198.0" prefHeight="29.0" prefWidth="324.0" />
+                     <Button fx:id="path_savaBtn" layoutX="171.0" layoutY="293.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="40.0" prefWidth="116.0" text="save" />
+                     <Button fx:id="path_closeBtn" layoutX="326.0" layoutY="293.0" mnemonicParsing="false" onAction="#closeAction" prefHeight="40.0" prefWidth="116.0" text="close" />
+                        <Label layoutX="210.0" layoutY="236.0" prefHeight="19.0" prefWidth="324.0" text="예시: C:/GAUS/log ('\' -> (x)  '/' -> (o))" textFill="RED" />
+                  </children>
+               </Pane>
+            </content>
+         </TitledPane>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

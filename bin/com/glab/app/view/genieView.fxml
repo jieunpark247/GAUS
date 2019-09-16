@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.HBox?>
+
+<!-- <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?> -->
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glab.app.controller.GenieController">
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="650.0" prefWidth="1000.0" stylesheets="@gaus.css">
+         <children>
+            <Button fx:id="genie_gTestBtn" layoutX="149.0" layoutY="428.0" mnemonicParsing="false" onAction="#gtestAction" prefHeight="46.0" prefWidth="103.0" text="G-Test" />
+          <Button fx:id="genie_kill" layoutX="20.0" layoutY="428.0" mnemonicParsing="false" onAction="#killAction" prefHeight="46.0" prefWidth="103.0" text="Kill" />
+            <Button fx:id="genie_devModeBtn" layoutX="305.0" layoutY="428.0" mnemonicParsing="false" onAction="#devModeAction" prefHeight="46.0" prefWidth="121.0" text="DevMode ON" />
+         
+            <Separator layoutY="197.0" prefHeight="4.0" prefWidth="1000.0" />
+            <ComboBox fx:id="genie_comboApp" layoutX="108.0" layoutY="226.0" opacity="0.82" prefHeight="29.0" prefWidth="234.0" />
+            <TextField fx:id="genie_appIdFld" layoutX="353.0" layoutY="226.0" prefHeight="29.0" prefWidth="194.0" promptText="앱아이디 입력(5001176)" />
+            <TextField fx:id="genie_intentFld" layoutX="612.0" layoutY="226.0" onAction="#intentAction" prefHeight="29.0" prefWidth="234.0" promptText="invoke명 입력(callTitle)" />
+            <Label layoutX="566.0" layoutY="232.0" text="Intent">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font></Label>
+            <Button fx:id="genie_intentBtn" layoutX="853.0" layoutY="225.0" mnemonicParsing="false" onAction="#intentAction" prefHeight="26.0" prefWidth="90.0" text="intent" />
+            <Separator layoutX="-1.0" layoutY="284.0" prefHeight="4.0" prefWidth="1000.0" />
+            <Button fx:id="genie_ttsBtn" layoutX="316.0" layoutY="312.0" mnemonicParsing="false" onAction="#ttsAction" prefHeight="31.0" prefWidth="66.0" text="word" />
+            <Label layoutX="47.0" layoutY="319.0" text="Word">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="genie_ttsFld" layoutX="94.0" layoutY="314.0" onAction="#ttsAction" prefHeight="29.0" prefWidth="216.0" promptText="발화명 입력(ex> 핑크퐁 실행)" />
+            <TextField fx:id="genie_inputFld" layoutX="517.0" layoutY="313.0" onAction="#inputAction" prefHeight="29.0" prefWidth="302.0" promptText="타이핑문장 입력(ex&gt; http://121....)" />
+            <Label layoutX="462.0" layoutY="318.0" text="Typing">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="genie_inputBtn" layoutX="825.0" layoutY="312.0" mnemonicParsing="false" onAction="#inputAction" prefHeight="31.0" prefWidth="73.0" text="input" />
+            <Button fx:id="genie_delBtn" layoutX="905.0" layoutY="312.0" mnemonicParsing="false" onAction="#delAction" prefHeight="31.0" prefWidth="73.0" text="clear" />
+            <Separator layoutX="10.0" layoutY="367.0" prefHeight="4.0" prefWidth="990.0" />
+            <ImageView fitHeight="181.0" fitWidth="992.0" layoutX="8.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/img/bg.png" />
+               </image></ImageView>
+            <Button fx:id="genie_devModeoffBtn" layoutX="443.0" layoutY="428.0" mnemonicParsing="false" onAction="#devModeOffAction" prefHeight="46.0" prefWidth="121.0" text="DevMode OFF" />
+            <Pane id="directionKey" layoutX="601.0" layoutY="407.0" prefHeight="258.0" prefWidth="400.0" style="-fx-background-color: white;">
+               <children>
+                  <Button fx:id="genie_upBtn" layoutX="164.0" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#upAction" prefHeight="50.0" prefWidth="73.0" />
+                  <Button fx:id="genie_downBtn" layoutX="163.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#downAction" prefHeight="50.0" prefWidth="73.0" />
+                  <Button fx:id="genie_leftBtn" layoutX="70.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#leftAction" prefHeight="50.0" prefWidth="73.0" />
+                  <Button fx:id="genie_rigntBtn" layoutX="258.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#rightAction" prefHeight="50.0" prefWidth="73.0" />
+                  <Button fx:id="genie_pressBtn" layoutX="210.0" layoutY="163.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressAction" prefHeight="50.0" prefWidth="100.0" text="Press" />
+                  <Button fx:id="genie_backBtn" layoutX="89.0" layoutY="163.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backAction" prefHeight="50.0" prefWidth="100.0" text="Back" />
+               </children>
+            </Pane>
+            <Label fx:id="directionLbl" alignment="CENTER" layoutX="600.0" layoutY="368.0" prefHeight="39.0" prefWidth="400.0" style="-fx-background-color: #666666;" text="Direction Key" textAlignment="CENTER" textFill="WHITE" />
+            <Button fx:id="micbtn" layoutX="390.0" layoutY="312.0" mnemonicParsing="false" onAction="#micAction" prefHeight="31.0" prefWidth="50.0" text="mic" />
+            <Label fx:id="dev_mode" alignment="CENTER" layoutX="279.0" layoutY="368.0" prefHeight="39.0" prefWidth="322.0" style="-fx-background-color: #666666;" text="Development Mode" textAlignment="CENTER" textFill="WHITE" />
+            <Label fx:id="adb_kill" alignment="CENTER" layoutX="7.0" layoutY="368.0" prefHeight="39.0" prefWidth="129.0" style="-fx-background-color: #666666;" text="ADB Kill" textAlignment="CENTER" textFill="WHITE" />
+            <Separator layoutX="278.0" layoutY="369.0" orientation="VERTICAL" prefHeight="133.0" prefWidth="0.0" />
+            <Separator layoutX="598.0" layoutY="369.0" orientation="VERTICAL" prefHeight="302.0" prefWidth="0.0" />
+            <Separator layoutX="-18.0" layoutY="497.0" prefHeight="11.0" prefWidth="619.0" />
+            <Label fx:id="hlstest" alignment="CENTER" layoutX="133.0" layoutY="368.0" prefHeight="39.0" prefWidth="147.0" style="-fx-background-color: #666666;" text="HLS Test" textAlignment="CENTER" textFill="WHITE" />
+            <Separator layoutX="130.0" layoutY="369.0" orientation="VERTICAL" prefHeight="39.0" prefWidth="0.0" />
+            <Label layoutX="53.0" layoutY="232.0" text="AppID">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+           
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

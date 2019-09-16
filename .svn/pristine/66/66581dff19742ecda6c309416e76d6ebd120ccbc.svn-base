@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" stylesheets="@gaus.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glab.app.controller.RpaController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@gaus.css">
+         <children>
+            <TabPane prefHeight="650.0" prefWidth="1000.0" stylesheets="@gaus.css" tabClosingPolicy="UNAVAILABLE" tabMinHeight="60.0" tabMinWidth="300.0">
+              <tabs>
+                <Tab text="실시간 검색어">
+                     <content>
+                        <Pane prefHeight="193.0" prefWidth="243.0" stylesheets="@gaus.css">
+                           <children>
+                              <Button fx:id="rpa_wordBtn" layoutX="353.0" layoutY="256.0" mnemonicParsing="false" onAction="#wordAction" prefHeight="38.0" prefWidth="294.0" text="실시간 검색어(네이버,다음,구글)" />
+                              <TextField fx:id="rpa_wordTime" layoutX="353.0" layoutY="205.0" onAction="#wordAction" prefHeight="36.0" prefWidth="294.0" promptText="원하는 시간을 입력해주세요 ex&gt; 12 14" />
+                           </children>
+                        </Pane>
+                     </content>
+                  </Tab>
+                <Tab text="프로야구">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="rpa_utterBtn" layoutX="583.0" layoutY="159.0" mnemonicParsing="false" onAction="#utterAction" prefHeight="35.0" prefWidth="112.0" text="발화 테스트" />
+                              <TextField fx:id="rpa_utterFld" layoutX="290.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="273.0" />
+                              <TextArea fx:id="rpa_utterReArea" layoutX="290.0" layoutY="212.0" prefHeight="200.0" prefWidth="400.0" wrapText="true" />
+                           </children>
+                        </Pane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

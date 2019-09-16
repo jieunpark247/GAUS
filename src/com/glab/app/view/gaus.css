@@ -1,0 +1,390 @@
+.background {
+		-fx-background-color: white;
+}
+#panelbg{
+	-fx-background-color: white;
+}
+
+
+#madeby {
+ 	  -fx-text-fill: #ffffff;
+ 	  -fx-font-size: 9.0pt;
+}
+#devInfoLabel,#devListLabel,#ipLabel,#deviceLabel {
+ 	 -fx-font-size: 13.0pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #ffffff;
+}
+
+.button {
+ 	     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.button:hover {
+	 -fx-background-color: #D8D8D8;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+#genie_devModeBtn,#genie_kill{ /* 개발자 모드 버튼 */
+	 -fx-background-color: #FA5A5A;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+
+}
+
+#genie_devModeBtn:hover,#genie_kill:hover{/*  개발자모드 클릭 */
+   	 -fx-background-color: #B40404;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+ 	 -fx-background-radius: 8.0px;
+ 	  -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+#genie_gTestBtn,#log_start, #connect_buddy,#genie_devModeoffBtn{ /* cms연동 모드 버튼 */
+	 -fx-background-color: #898989;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+
+}
+
+#genie_gTestBtn:hover,#genie_devModeoffBtn:hover {/*cms*/
+   	 -fx-background-color: #5D5E60;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+ 	 -fx-background-radius: 8.0px;
+ 	  -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+
+#genie_intentBtn, #genie_ttsBtn, #genie_inputBtn, #genie_delBtn,#micbtn,#rpa_utterBtn { /* 발화 , 입력 ,취소 버튼 */
+	 -fx-background-color: #EEEEEE;
+	 -fx-border-color: #D8D8D8;
+	 -fx-text-fill: #5D5E60;
+ 	 -fx-border-radius: 8.0px;	 
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+#genie_intentBtn:hover, #genie_ttsBtn:hover, #genie_inputBtn:hover, #genie_delBtn:hover,#micbtn:hover,#rpa_utterBtn:hover {
+	 -fx-background-color: #E6E6E6;
+	 -fx-border-color: #D8D8D8;
+	 -fx-text-fill: #5D5E60;
+ 	 -fx-border-radius: 8.0px;	 
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+ 	 
+}
+
+#gnb_connectBtn,#gnb_pathBtn { /*연결 / 해제 /  경로설정 */
+	 -fx-background-color: #FA5A5A;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-font-size: 12.0pt;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+ #gnb_connectBtn:hover,#gnb_pathBtn:hover{ /*연결  /  경로설정 */
+	 -fx-background-color: #B40404;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-font-size: 12.0pt;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+} 
+#gnb_disConnectBtn{
+	 -fx-background-color: #898989;
+	 -fx-text-fill: #ffffff;
+ 	-fx-font-weight: bold;
+	 -fx-font-size: 12.0pt;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+	
+}
+#gnb_disConnectBtn:hover{
+	-fx-background-color: #66646A;
+	-fx-text-fill: #ffffff;
+ 	-fx-font-weight: bold;
+	-fx-font-size: 12.0pt;
+ 	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+#log_logBtn,#path_savaBtn,#search,#log_logBuddyOpnBtn{ /* 로그보기  */
+	 -fx-background-color: #7FB1BF;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-font-size: 12.0pt;
+	 -fx-border-radius: 8.0px;	 
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+#log_logBtn:hover,#path_savaBtn:hover,#search:hover#log_logBuddyOpnBtn:hover{ /* 로그보기  */
+	 -fx-background-color: #086A87;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-font-size: 12.0pt;
+	 -fx-border-radius: 8.0px;	 
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+#log_logDelBtn,#path_closeBtn,#searchall,#log_logBuddyBtn{ /* 로그 지우기 */
+ 	 -fx-background-color: #FA5A5A;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-font-size: 12.0pt;
+	 -fx-border-radius: 8.0px;	 
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+#log_logDelBtn:hover,#path_closeBtn:hover,#searchall:hover,#log_logBuddyBtn:hover { /* 로그 지우기 */
+ 	 -fx-background-color: #B40404;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-font-size: 12.0pt;
+	 -fx-border-radius: 8.0px;	 
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.tab-pane *.tab-header-background {
+    -fx-background-color:white;
+    -fx-effect: null
+ 
+}
+
+.tab:selected {
+   -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+	-fx-background-color: #5D5E60;
+	-fx-background-radius: 9 9 0 0, 4 4 0 0, 2 2 0 0;
+	-fx-padding: 0.083333em 0.5em 0.083333em 0.5em; /* 1 6 1 6 */
+	-fx-border-color: #E6E6E6; 	 
+}
+
+.tab:hover {
+	-fx-font-weight: bold;
+	-fx-background-color: #F2F2F2;
+	-fx-background-insets: 0, 1, 2;
+	-fx-background-radius: 9 9 0 0, 4 4 0 0, 2 2 0 0;
+	-fx-padding: 0.083333em 0.5em 0.083333em 0.5em; /* 1 6 1 6 */
+		
+}
+
+.tab:selected .tab-label { 
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.tab:hover .tab-label { 
+    -fx-text-fill: #5D5E60;
+    -fx-font-weight: bold;
+}
+.tab .tab-label { 
+    -fx-text-fill: #5D5E60;
+    -fx-font-weight: bold;
+  
+}
+.tab {
+	-fx-background-insets: 0, 1, 2;
+	-fx-background-radius: 9 9 0 0, 4 4 0 0, 2 2 0 0;
+	-fx-padding: 0.083333em 0.5em 0.083333em 0.5em; /* 1 6 1 6 */
+	-fx-font-weight: bold;
+	-fx-background-color: #FAFAFA; 	 
+	-fx-border-color: #E6E6E6; 	 
+	-fx-border-radius:  9 9 0 0, 4 4 0 0, 2 2 0 0;
+	
+}
+
+#tablog{
+	 -fx-background-color: white;
+}
+
+
+#screenShot_shotBtn,#rpa_wordBtn{ /* 스크린샷 */
+	 -fx-background-color: #7FB1BF;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-font-size: 12.0pt;
+	 -fx-border-radius: 8.0px;	 
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+#screenShot_shotBtn:hover,#rpa_wordBtn:hover{ /* 스크린샷 */
+	 -fx-background-color: #086A87;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	  -fx-font-size: 12.0pt;
+	  -fx-border-radius: 8.0px;	 
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+
+
+#verInfomation{ /*버정정보 */
+	 -fx-background-color: #5D5E60;
+	 -fx-border-color: #5D5E60;
+	 -fx-text-fill: #F2F2F2;
+	  -fx-font-size: 10.0pt;
+	  	 -fx-border-radius: 8.0px;	 
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+#verInfomation:hover{/*버정정보 */
+	 -fx-background-color: #5D5E60;
+	 -fx-border-color: #5D5E60;
+	 -fx-text-fill: white;
+	  -fx-font-size: 11.0pt;
+	  	 -fx-border-radius: 8.0px;	 
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+#screenShot_imgView{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);
+
+}
+
+#dev_list{
+	-fx-text-fill: white;
+}
+
+/*방향키 ================== */
+#directionLbl,#dev_mode,#adb_kill,#hlstest{ /* 방향 리모컨 */
+	  -fx-font-weight: bold;
+}
+#genie_upBtn{
+	 -fx-background-color: #A7A7A7;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+ 	 -fx-background-image: url("/img/up.png");
+}
+#genie_downBtn{
+	 -fx-background-color: #A7A7A7;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+ 	 -fx-background-image: url("/img/down.png");
+}
+#genie_leftBtn{
+	 -fx-background-color: #A7A7A7;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+ 	 -fx-background-image: url("/img/left.png");
+}
+#genie_rigntBtn{
+	 -fx-background-color: #A7A7A7;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+ 	 -fx-background-image: url("/img/right.png");
+}
+#genie_pressBtn{
+	 -fx-background-color: #A7A7A7;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+
+ 
+}
+#genie_backBtn{
+	 -fx-background-color: #A7A7A7;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+
+}
+
+#genie_upBtn:hover,#genie_downBtn:hover,#genie_leftBtn:hover,#genie_rigntBtn:hover,#genie_pressBtn:hover,#genie_backBtn:hover{
+	 -fx-background-color: #66646A;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+/*----------------------------------*/
+
+/*refrech btn */
+#refreshBtn{
+	 -fx-background-color:  #5D5E60;
+	 	 -fx-background-image: url("/img/refresh.png");
+}
+#refreshBtn:hover{
+	 -fx-background-color:  #5D5E60;
+	 	 -fx-background-image: url("/img/refresh_hov.png");
+}
+
+
+#input_adb{ /* cms연동 모드 버튼 */
+	 -fx-background-color: #898989;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+
+}
+
+#input_adb:hover{ /* cms연동 모드 버튼 */
+	 -fx-background-color: #5D5E60;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+
+}
+#clear_adb{ /* cms연동 모드 버튼 */
+	 -fx-background-color: #898989;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+
+}
+
+#clear_adb:hover{ /* cms연동 모드 버튼 */
+	 -fx-background-color: #66646A;
+	 -fx-text-fill: #ffffff;
+	 -fx-font-weight: bold;
+	 -fx-border-radius: 8.0px;
+ 	 -fx-background-radius: 8.0px;
+ 	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+
+}
+#packInfo{
+ 	-fx-font-size: 12.0pt;
+	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.text-input {
+    -fx-text-fill: -fx-text-inner-color;
+    -fx-highlight-fill: derive(-fx-control-inner-background,-20%);
+    -fx-highlight-text-fill: -fx-text-inner-color;
+    -fx-prompt-text-fill: derive(-fx-control-inner-background,-30%);
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+        linear-gradient(from 0px 0px to 0px 5px, derive(-fx-control-inner-background, -9%), -fx-control-inner-background);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 3, 2;
+    -fx-cursor: text;
+    -fx-padding: 0.333333em 0.583em 0.333333em 0.583em; /* 4 7 4 7 */
+}

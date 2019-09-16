@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glab.app.controller.ScreenShotController">
+   <children>
+      <AnchorPane prefHeight="644.0" prefWidth="1000.0" stylesheets="@gaus.css">
+         <children>
+            <Button fx:id="screenShot_shotBtn" layoutX="433.0" layoutY="24.0" mnemonicParsing="false" onAction="#screenShotAction" prefHeight="45.0" prefWidth="125.0" text="ScreenShot" />
+            <TextArea fx:id="screenShot_imgpathArea" layoutX="193.0" layoutY="585.0" prefHeight="29.0" prefWidth="615.0" />
+            <ImageView fx:id="screenShot_imgView" fitHeight="479.0" fitWidth="875.0" layoutX="63.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

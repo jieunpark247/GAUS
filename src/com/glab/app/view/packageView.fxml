@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleListClick" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glab.app.controller.PackageController">
+   <children>
+      <AnchorPane layoutX="-2.0" layoutY="-4.0" prefHeight="650.0" prefWidth="1009.0" stylesheets="@gaus.css">
+         <children>
+            <Button fx:id="search" layoutX="669.0" layoutY="30.0" mnemonicParsing="false" onAction="#searchAction" prefHeight="31.0" prefWidth="70.0" text="search" />
+            <Button fx:id="searchall" layoutX="752.0" layoutY="30.0" mnemonicParsing="false" onAction="#searchAllAction" prefHeight="31.0" prefWidth="97.0" text="searchAll" />
+            <TextField fx:id="searchval" layoutX="278.0" layoutY="31.0" onAction="#searchAction" prefHeight="29.0" prefWidth="370.0" />
+            <TitledPane animated="false" collapsible="false" layoutX="31.0" layoutY="90.0" prefHeight="521.0" prefWidth="939.0" text="Package List">
+               <content>
+                  <ListView fx:id="package_list" onMouseClicked="#handleListClick" prefHeight="500.0" prefWidth="945.0" stylesheets="@gaus.css" />
+               </content>
+            </TitledPane>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

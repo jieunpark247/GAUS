@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glab.app.controller.LogController">
+   <children>
+      <TabPane fx:id="tablog" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@gaus.css" tabClosingPolicy="UNAVAILABLE" tabMinHeight="60.0" tabMinWidth="300.0">
+        <tabs>
+          <Tab fx:id="genie_tab" text="GIGA GENIE / LTE">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="579.0" prefWidth="986.0">
+                     <children>
+                       <Button fx:id="log_logBtn" layoutX="203.0" layoutY="147.0" mnemonicParsing="false" onAction="#logAction" prefHeight="53.0" prefWidth="137.0" text="log open" />
+                        <Button fx:id="log_logDelBtn" layoutX="203.0" layoutY="271.0" mnemonicParsing="false" onAction="#logDelAction" prefHeight="53.0" prefWidth="137.0" text="log clear" />
+                        <Label layoutX="371.0" layoutY="155.0" prefHeight="37.0" prefWidth="492.0" text="log가 txt파일로 열립니다. log.txt가 닫힌 후 GAUS를 실행해주세요. " />
+                        <Label layoutX="371.0" layoutY="280.0" prefHeight="36.0" prefWidth="326.0" text=" log가 지워지고 새로 로그가 쌓이게 됩니다" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="buddy_tab" text="BUDDY">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="log_logBuddyBtn" layoutX="347.0" layoutY="198.0" mnemonicParsing="false" onAction="#logBuddyAction" prefHeight="49.0" prefWidth="133.0" text="Log Write" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font></Button>
+                        <Button fx:id="log_logBuddyOpnBtn" layoutX="347.0" layoutY="366.0" mnemonicParsing="false" onAction="#logBuddyOpnAction" prefHeight="49.0" prefWidth="133.0" text="Log Read">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font></Button>
+                        <Text layoutX="222.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="step 1" wrappingWidth="59.28564453125">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="222.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="step 2" wrappingWidth="59.28564453125">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="222.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="step 3" wrappingWidth="59.28564453125">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="log_start" layoutX="346.0" layoutY="279.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="133.0" text="Input Start">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font></Button>
+                        <Text layoutX="495.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="클릭을 하면 서버가 기동이 됩니다." wrappingWidth="247.6513671875">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="495.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cmd 창에 start를 입력해주세요." wrappingWidth="247.6513671875">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="495.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="클릭을 하면 로그를 볼 수 있습니다." wrappingWidth="247.6513671875">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="495.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buddy 연결 후 개발자 모드로 진입하세요." wrappingWidth="335.6513671875">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="222.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="step 4" wrappingWidth="59.28564453125">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="connect_buddy" layoutX="346.0" layoutY="116.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="133.0" text="Connect Buddy" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   
+   </children>
+</Pane>

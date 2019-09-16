@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glab.app.controller.MainController">
+   <top>
+      <AnchorPane id="background" prefHeight="88.0" prefWidth="1200.0" stylesheets="@gaus.css" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="gnb_ipFld" layoutX="381.0" layoutY="29.0" prefHeight="38.0" prefWidth="172.0" />
+            <Label layoutX="352.0" layoutY="32.0" text="ip" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Button fx:id="gnb_connectBtn" layoutX="567.0" layoutY="29.0" mnemonicParsing="false" onAction="#connectAction" prefHeight="36.0" prefWidth="94.0" text="connect" />
+            <ChoiceBox fx:id="gnb_choiceDev" layoutX="887.0" layoutY="28.0" prefHeight="29.0" prefWidth="150.0" />
+            <Label layoutX="816.0" layoutY="32.0" prefHeight="30.0" prefWidth="63.0" text="device" textFill="#fcfcfc">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Button fx:id="gnb_pathBtn" layoutX="1047.0" layoutY="30.0" mnemonicParsing="false" onAction="#pathSetAction" prefHeight="35.0" prefWidth="131.0" text="path setting" />
+            <Button fx:id="gnb_disConnectBtn" layoutX="673.0" layoutY="29.0" mnemonicParsing="false" onAction="#disConnectAction" prefHeight="37.0" prefWidth="120.0" text="disConnect" />
+            <ImageView fitHeight="80.0" fitWidth="200.0" layoutX="6.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/img/logo_white.png" />
+               </image></ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane id="panelbg" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" styleClass="background" BorderPane.alignment="CENTER">
+         <children>
+            <Pane id="panelbg" prefHeight="712.0" prefWidth="198.0" style="-fx-background-color: #292E34;" styleClass="background">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="9.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="/img/left_icon_list.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="48.0" layoutY="22.0" text="Device List" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Unicode MS" size="23.0" />
+                     </font></Label>
+                  <Label fx:id="snb_devList" alignment="TOP_LEFT" layoutX="40.0" layoutY="65.0" prefHeight="88.0" prefWidth="152.0" text="Label" textFill="WHITE" />
+                  <ImageView fitHeight="33.0" fitWidth="26.0" layoutX="10.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="/img/left_icon_info.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="47.0" layoutY="196.0" text="Device Info" textFill="WHITE">
+                     <font>
+                        <Font size="23.0" />
+                     </font></Label>
+                  <Label fx:id="snb_devInfo" alignment="TOP_LEFT" layoutX="42.0" layoutY="245.0" prefHeight="119.0" prefWidth="147.0" text="Label" textFill="WHITE" />
+                  <ListView id="packList" fx:id="packList" layoutY="458.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TabPane prefHeight="712.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="300.0" tabMinHeight="50.0" tabMinWidth="180.0">
+              <tabs>
+                <Tab id="genie" fx:id="genieTab" onSelectionChanged="#genieTabAction" text="GiGA Genie">
+                     <content>
+                        <Pane fx:id="geniePane" prefHeight="653.0" prefWidth="988.0" />
+                     </content>
+                  </Tab>
+                <Tab id="package" fx:id="packageTab" onSelectionChanged="#packageTabAction" text="Package">
+                     <content>
+                        <Pane fx:id="packagePane" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab id="screenshot" fx:id="screenShotTab" onSelectionChanged="#screenShotTabAction" text="Screen Shot">
+                     <content>
+                        <Pane fx:id="screenShotPane" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab id="log" fx:id="logTab" onSelectionChanged="#logTabAction" text="Log">
+                     <content>
+                        <Pane fx:id="logPane" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab id="rpa" fx:id="rpaTab" onSelectionChanged="#rpaTabAction" text="RPA">
+                     <content>
+                        <Pane fx:id="rpaPane" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

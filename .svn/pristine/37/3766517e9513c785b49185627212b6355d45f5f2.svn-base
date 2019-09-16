@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="580.0" stylesheets="@gaus.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glab.app.controller.verPopUpController">
+   <children>
+      <TextArea fx:id="verInfo" layoutX="17.0" layoutY="24.0" prefHeight="535.0" prefWidth="566.0" />
+   </children>
+</AnchorPane>
