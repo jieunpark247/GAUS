@@ -1,0 +1,1 @@
+Powershell.exe -noprofile -executionpolicy bypass -file "C:\GAUS\buddy_log.ps1"
