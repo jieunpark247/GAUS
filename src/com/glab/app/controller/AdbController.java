@@ -13,7 +13,7 @@ import com.glab.app.service.ParsingService;
 public class AdbController {
 	private String result = null;
 	private String cdPath = "";
-	
+	private String selectedIP = "";
 	CmdService cs = new CmdService();
 	FileService fwa = new FileService();
 	ParsingService ps = new ParsingService();
@@ -27,6 +27,18 @@ public class AdbController {
 		result = null;
 		cdPath = "cd " + adbPath + "/ && ";
 		return "수정된 cd path " + cdPath;
+	}
+	
+	/**
+	 * 특정 ip 선택해서 실행 
+	 * @param oneIP
+	 * @return
+	 */
+	public String setOneIP(String oneIP) {
+		result = null;
+		selectedIP = oneIP;
+		System.out.println("selected IP  " + selectedIP);
+		return selectedIP;
 	}
 
 	
@@ -68,13 +80,13 @@ public class AdbController {
 	 * adb에 연결된 기기의 모델명 반환
 	 * @return 모델명
 	 */
-	public String modelInfo() {
+	public String modelInfo(String deviceIP) {
 		result = null;
-		String command = cs.inputCommand(cdPath + "adb shell getprop ro.product.model");
+		String command = cs.inputCommand(cdPath +   "adb " + deviceIP+ " shell getprop ro.product.model");
 		result = cs.execCommand(command);
 		return result;
 	}
-
+		
 	
 	/**
 	 * adb 연결 해제
@@ -83,7 +95,14 @@ public class AdbController {
 	public String disConnect() {
 		result = null;
 		String command = cs.inputCommand(cdPath + "adb disconnect");
-		// System.out.println("command: " + command);
+		result = cs.execCommand(command);
+		return result;
+	}
+	
+
+	public String disConnectOneDevice(String deviceIP) {
+		result = null;
+		String command = cs.inputCommand(cdPath + "adb disconnect " + deviceIP);
 		result = cs.execCommand(command);
 		return result;
 	}
@@ -97,7 +116,7 @@ public class AdbController {
 	public String devMode() {
 		result = null;
 		String command = cs.inputCommand(cdPath
-				+ "adb shell am broadcast -a \"kt.action.container.devmode.req\" --ei \"devmodeState\" 1 --ei \"pwrState\" 0 --es \"userKey\" \"UNKNOWN\" --es \"uword\" \"개발자모드\"");
+				+ "adb" + selectedIP + " shell am broadcast -a \"kt.action.container.devmode.req\" --ei \"devmodeState\" 1 --ei \"pwrState\" 0 --es \"userKey\" \"UNKNOWN\" --es \"uword\" \"개발자모드\"");
 		result = cs.execCommand(command);
 		return result;
 	}
@@ -110,8 +129,8 @@ public class AdbController {
 	public String devModeOff() {
 			result = null;
 			String command = cs
-					.inputCommand(cdPath + "adb shell am broadcast -a \"kt.action.voicecommand.asr\" --es \"kwsText\" \""
-							+ "개발자모드해제" + "\" --es \"gender\" \"0\" --ei \"resultCode\" 0");
+					.inputCommand(cdPath + "adb" + selectedIP+ " shell am broadcast -a \"kt.action.voicecommand.asr\" --es \"kwsText\" \""
+							+ "개발자모드\\ 해제" + "\" --es \"gender\" \"0\" --ei \"resultCode\" 0");
 			result = cs.execCommand(command);
 			return result;
 
@@ -129,7 +148,7 @@ public class AdbController {
 		String appId = array[0];
 		String intent = array[1];
 		String command = cs.inputCommand(cdPath
-				+ "adb shell am broadcast -a \"kt.action.container.service.req\" --ei \"pwrState\" 0 --es \"userKey\" \"UNKNOWN\" --es \"appId\" \""
+				+ "adb" + selectedIP+ " shell am broadcast -a \"kt.action.container.service.req\" --ei \"pwrState\" 0 --es \"userKey\" \"UNKNOWN\" --es \"appId\" \""
 				+ appId + "\" --es \"actionCode\" \"" + intent + "\"");
 		result = cs.execCommand(command);
 		return result;
@@ -139,7 +158,7 @@ public class AdbController {
 	public String cmsInput(String input) {
 		result = null;
 		String command = cs
-				.inputCommand(cdPath + "adb shell input keyevent KEYCODE_DPAD_RIGHT && adb shell input text " + input);
+				.inputCommand(cdPath + "adb" + selectedIP+ " shell input keyevent KEYCODE_DPAD_RIGHT && adb" + selectedIP+ " shell input text " + input);
 		result = cs.execCommand(command);
 		return result;
 	}
@@ -148,7 +167,7 @@ public class AdbController {
 	public String cmsCall() {
 		result = null;
 		String command = cs
-				.inputCommand(cdPath + "adb shell input keyevent KEYCODE_DPAD_DOWN && adb shell input press");
+				.inputCommand(cdPath + "adb" + selectedIP+ " shell input keyevent KEYCODE_DPAD_DOWN && adb" + selectedIP+ " shell input press");
 		result = cs.execCommand(command);
 		return result;
 	}
@@ -156,12 +175,12 @@ public class AdbController {
 	public String micttsCall(String input) {
 		result = null;
 		String command = cs
-				.inputCommand(cdPath + "adb shell am broadcast -a \"kt.action.remocon.voice.ready\" ");
+				.inputCommand(cdPath + "adb" + selectedIP+ " shell am broadcast -a \"kt.action.remocon.voice.ready\" ");
 		result = cs.execCommand(command);
 		
 		
 		String command2 = cs
-				.inputCommand(cdPath + "adb shell am broadcast -a \"kt.action.voicecommand.asr\" --es \"kwsText\" \""
+				.inputCommand(cdPath + "adb" + selectedIP+ " shell am broadcast -a \"kt.action.voicecommand.asr\" --es \"kwsText\" \""
 						+ input + "\" --es \"gender\" \"0\" --ei \"resultCode\" 0");
 		result = cs.execCommand(command2);
 		return result;
@@ -176,7 +195,7 @@ public class AdbController {
 	public String tts(String input) {
 		result = null;
 		String command = cs
-				.inputCommand(cdPath + "adb shell am broadcast -a \"kt.action.voicecommand.asr\" --es \"kwsText\" \""
+				.inputCommand(cdPath + "adb" + selectedIP+ " shell am broadcast -a \"kt.action.voicecommand.asr\" --es \"kwsText\" \""
 						+ input + "\" --es \"gender\" \"0\" --ei \"resultCode\" 0");
 		result = cs.execCommand(command);
 		return result;
@@ -190,7 +209,7 @@ public class AdbController {
 	 */
 	public String textInput(String input) {
 		result = null;
-		String command = cs.inputCommand(cdPath + "adb shell input text " + input);
+		String command = cs.inputCommand(cdPath + "adb" + selectedIP+ " shell input text " + input);
 		result = cs.execCommand(command);
 		return result;
 	}
@@ -204,7 +223,7 @@ public class AdbController {
 	public String textClear() {
 		result = null;
 		String command = cs.inputCommand(cdPath
-				+ "adb shell input keyevent KEYCODE_DPAD_DOWN && adb shell input keyevent KEYCODE_DPAD_UP && adb shell input keyevent KEYCODE_DEL");
+				+ "adb" + selectedIP+ " shell input keyevent KEYCODE_DPAD_DOWN && adb" + selectedIP+ " shell input keyevent KEYCODE_DPAD_UP && adb" + selectedIP+ " shell input keyevent KEYCODE_DEL");
 		result = cs.execCommand(command);
 		return result;
 	}
@@ -216,7 +235,8 @@ public class AdbController {
 	 */
 	public ArrayList<String> loadPackage() {
 		ArrayList<String> p = null;
-		String command = cs.inputCommand(cdPath + "adb shell pm list packages");
+		String command = cs.inputCommand(cdPath + "adb" + selectedIP + " shell pm list packages");
+		System.out.println(command);
 		p = cs.readPackage(command);
 		return p;
 	}
@@ -229,7 +249,7 @@ public class AdbController {
 	 */
 	public ArrayList<String> dumpSysPackage(String packName) {
 		ArrayList<String> info = null;
-		String command = cs.inputCommand(cdPath + "adb shell dumpsys package " + packName + " | find \"=\"");
+		String command = cs.inputCommand(cdPath + "adb" + selectedIP+ " shell dumpsys package " + packName + " | find \"=\"");
 		System.out.println(command);
 		info = cs.dumpSys(command);
 
@@ -238,7 +258,7 @@ public class AdbController {
 
 	public ArrayList<String> searchPackage(String packName) {
 		ArrayList<String> info = null;
-		String command = cs.inputCommand(cdPath + "adb shell pm list packages | find \""+ packName+ "\"");
+		String command = cs.inputCommand(cdPath + "adb" + selectedIP+ " shell pm list packages | find \""+ packName+ "\"");
 		System.out.println(command);
 		info = cs.readPackage(command);
 		return info;
@@ -260,11 +280,11 @@ public class AdbController {
 			dir = input+"/";
 		}
 		System.out.println("screenShot() - " + dir);
-		String command = cs.inputCommand(cdPath + "adb shell screencap /sdcard/" + filename);
+		String command = cs.inputCommand(cdPath + "adb" + selectedIP+ " shell screencap /sdcard/" + filename);
 		result = cs.execCommand(command); // 디바이스 화면 캡쳐
-		String command2 = cs.inputCommand(cdPath + "adb pull /sdcard/" + filename + " " + dir + filename);
+		String command2 = cs.inputCommand(cdPath + "adb" + selectedIP+ " pull /sdcard/" + filename + " " + dir + filename);
 		result += cs.execCommand(command2); // 디바이스 캡쳐 파일 로컬로 가져오기
-		String command3 = cs.inputCommand(cdPath + "adb shell rm /sdcard/" + filename);
+		String command3 = cs.inputCommand(cdPath + "adb" + selectedIP+ " shell rm /sdcard/" + filename);
 		result += cs.execCommand(command3); // 디바이스에 저장된 캡쳐파일 삭제
 		System.out.println(dir + filename);
 		return dir + filename;
@@ -290,12 +310,12 @@ public class AdbController {
 		} else if (key.equals("backBtn")) {
 			keycode = "	KEYCODE_BACK";
 		} else if (key.equals("pressBtn")) {
-			String command = cs.inputCommand(cdPath + "adb shell input press");
+			String command = cs.inputCommand(cdPath + "adb" + selectedIP+ " shell input press");
 			result = cs.execCommand(command);
 			System.out.println(result + key);
 			return result;
 		}
-		String command = cs.inputCommand(cdPath + "adb shell input keyevent " + keycode);
+		String command = cs.inputCommand(cdPath + "adb" + selectedIP+ " shell input keyevent " + keycode);
 		result = cs.execCommand(command);
 		return result;
 	}
@@ -310,7 +330,7 @@ public class AdbController {
 		result = null;
 		System.out.println("logPrint() - " + cdPath + " logpath 는" + logPath);
 
-		String command = cs.inputCommand(cdPath + "adb logcat -d -v time > " + logPath +"/"+ "genie_log_write.txt");
+		String command = cs.inputCommand(cdPath + "adb" + selectedIP+ " logcat -d -v time > " + logPath +"/"+ "genie_log_write.txt");
 		/**
 		 * logcat 명령어 -d : 로그를 화면에 출력하고 종료 -v <format> : 특정 메타데이터 필드를 선택하면 로그 메시지 출력 가능
 		 * ㄴ time : 로그 메시지의 날짜, 호출시간, 우선순위/태그와 메시지가 발생한 PID 출력
@@ -329,7 +349,7 @@ public class AdbController {
 	public String logDel() {
 		result = null;
 		System.out.println("logDel() - " + cdPath);
-		String command = cs.inputCommand(cdPath + "adb logcat -c");
+		String command = cs.inputCommand(cdPath + "adb" + selectedIP+ " logcat -c");
 		/**
 		 * logcat 명령어 -c : 전체 로그를 삭제
 		 */
@@ -347,7 +367,7 @@ public class AdbController {
 		result = null;
 		System.out.println("logOpen() - " + Path);
 		String command = cs.inputCommand("cd " + Path + " && copy \""+Path+"/genie_log_write.txt\" \""+Path+"/genie_log_read.txt\"" +" && "+ ""+Path+"/genie_log_read.txt");
-		result = cs.execCommand(command);
+		result = cs.onlyExecCommand(command);
 		return result;
 	}
 
@@ -360,10 +380,10 @@ public class AdbController {
 	public String utter(String input) {
 		result = null;
 		String command = cs.inputCommand(
-				cdPath + "adb logcat -c && adb shell am broadcast -a \"kt.action.voicecommand.asr\" --es \"kwsText\" \""
+				cdPath + "adb" + selectedIP+ " logcat -c && adb" + selectedIP+ " shell am broadcast -a \"kt.action.voicecommand.asr\" --es \"kwsText\" \""
 						+ input + "\" --es \"gender\" \"0\" --ei \"resultCode\" 0");
 		result = cs.execCmdUtter(command);
-		String command2 = cs.inputCommandKo(cdPath + "adb logcat -d -v time | find \"answer :\"");
+		String command2 = cs.inputCommandKo(cdPath + "adb" + selectedIP+ " logcat -d -v time | find \"DSS response:\"");
 		result = cs.execCmdUtter(command2);
 		System.out.println("==== > " +result);
 		String data = null;
@@ -372,7 +392,7 @@ public class AdbController {
 			return result;
 		}else {
 			try {
-				String[] arr = result.split("answer :");
+				String[] arr = result.split("DSS response: ");
 				data = arr[1]; // 'TTS Data '이후 결과만 반환
 			} catch (Exception e) {
 				/////// 수정 	
@@ -396,7 +416,7 @@ public class AdbController {
 	 */
 	public String utterLog(String input) {
 		result = null;
-		String command2 = cs.inputCommandKo(cdPath + "adb logcat -d -v time | find \"answer :\"");
+		String command2 = cs.inputCommandKo(cdPath + "adb" + selectedIP + " logcat -d -v time | find \"DSS response:\"");
 		result = cs.execCmdUtter(command2);
 		return result;
 	}
@@ -441,7 +461,7 @@ public class AdbController {
 		System.out.println(".bat 파일 실행");
 		return result;
 	}
-	
+
 	/*
 	 * buddy log txt파일로 열기
 	 */
@@ -488,6 +508,28 @@ public class AdbController {
 		return result;
 	}
 	
-
+	public String mcConfig() {
+		result = null;
+		String command = cs.inputCommand(cdPath + "adb" + selectedIP + " shell am broadcast -a kt.action.mc.config ");
+		result = cs.execCommand(command);
+		return result;
+	}
+	public String exit() {
+		result = null;
+		String command = cs
+				.inputCommand(cdPath + "adb" + selectedIP+ " shell am broadcast -a \"kt.action.voicecommand.asr\" --es \"kwsText\" \""
+						+ "나가기" + "\" --es \"gender\" \"0\" --ei \"resultCode\" 0");
+		result = cs.execCommand(command);
+		return result;
+	}
+	
+	public String goApp(String logPath) {
+		result = null;
+		System.out.println("logPrint() - " + cdPath + " logpath 는" + logPath);
+		result = cs.appCommand(); //.sh 실행
+		System.out.println(".sh 파일 실행");
+		return result;
+	}
+	
 
 }

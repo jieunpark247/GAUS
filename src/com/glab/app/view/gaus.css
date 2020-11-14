@@ -3,6 +3,7 @@
 }
 #panelbg{
 	-fx-background-color: white;
+	
 }
 
 
@@ -25,7 +26,7 @@
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-#genie_devModeBtn,#genie_kill{ /* 개발자 모드 버튼 */
+#genie_devModeBtn,#genie_kill,#genie_mcConfig{ 
 	 -fx-background-color: #FA5A5A;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -34,14 +35,14 @@
 
 }
 
-#genie_devModeBtn:hover,#genie_kill:hover{/*  개발자모드 클릭 */
+#genie_devModeBtn:hover,#genie_kill:hover,#genie_mcConfig:hover {
    	 -fx-background-color: #B40404;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
  	 -fx-background-radius: 8.0px;
  	  -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
-#genie_gTestBtn,#log_start, #connect_buddy,#genie_devModeoffBtn{ /* cms연동 모드 버튼 */
+#genie_gTestBtn,#log_start, #connect_buddy,#genie_devModeoffBtn, #genie_exit{ 
 	 -fx-background-color: #898989;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -51,7 +52,7 @@
 
 }
 
-#genie_gTestBtn:hover,#genie_devModeoffBtn:hover {/*cms*/
+#genie_gTestBtn:hover,#genie_devModeoffBtn:hover, #genie_exit:hover {/*cms*/
    	 -fx-background-color: #5D5E60;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -60,7 +61,7 @@
 }
 
 
-#genie_intentBtn, #genie_ttsBtn, #genie_inputBtn, #genie_delBtn,#micbtn,#rpa_utterBtn { /* 발화 , 입력 ,취소 버튼 */
+#genie_intentBtn, #genie_ttsBtn, #genie_inputBtn, #genie_delBtn,#micbtn,#rpa_utterBtn,#genie_goBtn {
 	 -fx-background-color: #EEEEEE;
 	 -fx-border-color: #D8D8D8;
 	 -fx-text-fill: #5D5E60;
@@ -69,7 +70,7 @@
  	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-#genie_intentBtn:hover, #genie_ttsBtn:hover, #genie_inputBtn:hover, #genie_delBtn:hover,#micbtn:hover,#rpa_utterBtn:hover {
+#genie_intentBtn:hover, #genie_ttsBtn:hover, #genie_inputBtn:hover, #genie_delBtn:hover,#micbtn:hover,#rpa_utterBtn:hover,#genie_goBtn:hover {
 	 -fx-background-color: #E6E6E6;
 	 -fx-border-color: #D8D8D8;
 	 -fx-text-fill: #5D5E60;
@@ -79,37 +80,37 @@
  	 
 }
 
-#gnb_connectBtn,#gnb_pathBtn { /*연결 / 해제 /  경로설정 */
+#gnb_connectBtn,#gnb_pathBtn {
 	 -fx-background-color: #FA5A5A;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
-	 -fx-font-size: 12.0pt;
+	 -fx-font-size: 10.0pt;
  	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
- #gnb_connectBtn:hover,#gnb_pathBtn:hover{ /*연결  /  경로설정 */
+ #gnb_connectBtn:hover,#gnb_pathBtn:hover{ 
 	 -fx-background-color: #B40404;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
-	 -fx-font-size: 12.0pt;
+	 -fx-font-size: 10.0pt;
  	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 } 
-#gnb_disConnectBtn{
+#gnb_disConnectBtn,#gnb_disConnectOneBtn{
 	 -fx-background-color: #898989;
 	 -fx-text-fill: #ffffff;
  	-fx-font-weight: bold;
-	 -fx-font-size: 12.0pt;
+	 -fx-font-size: 10.0pt;
  	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 	
 }
-#gnb_disConnectBtn:hover{
+#gnb_disConnectBtn:hover, #gnb_disConnectOneBtn:hover{
 	-fx-background-color: #66646A;
 	-fx-text-fill: #ffffff;
  	-fx-font-weight: bold;
-	-fx-font-size: 12.0pt;
+	-fx-font-size: 10.0pt;
  	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-#log_logBtn,#path_savaBtn,#search,#log_logBuddyOpnBtn{ /* 로그보기  */
+#log_logBtn,#path_savaBtn,#search,#log_logBuddyOpnBtn{ 
 	 -fx-background-color: #7FB1BF;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -119,7 +120,7 @@
  	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-#log_logBtn:hover,#path_savaBtn:hover,#search:hover#log_logBuddyOpnBtn:hover{ /* 로그보기  */
+#log_logBtn:hover,#path_savaBtn:hover,#search:hover#log_logBuddyOpnBtn:hover{ 
 	 -fx-background-color: #086A87;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -129,7 +130,7 @@
  	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-#log_logDelBtn,#path_closeBtn,#searchall,#log_logBuddyBtn{ /* 로그 지우기 */
+#log_logDelBtn,#path_closeBtn,#searchall,#log_logBuddyBtn{
  	 -fx-background-color: #FA5A5A;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -139,7 +140,7 @@
  	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-#log_logDelBtn:hover,#path_closeBtn:hover,#searchall:hover,#log_logBuddyBtn:hover { /* 로그 지우기 */
+#log_logDelBtn:hover,#path_closeBtn:hover,#searchall:hover,#log_logBuddyBtn:hover {
  	 -fx-background-color: #B40404;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -151,8 +152,7 @@
 
 .tab-pane *.tab-header-background {
     -fx-background-color:white;
-    -fx-effect: null
- 
+    -fx-effect: null;
 }
 
 .tab:selected {
@@ -170,7 +170,6 @@
 	-fx-background-insets: 0, 1, 2;
 	-fx-background-radius: 9 9 0 0, 4 4 0 0, 2 2 0 0;
 	-fx-padding: 0.083333em 0.5em 0.083333em 0.5em; /* 1 6 1 6 */
-		
 }
 
 .tab:selected .tab-label { 
@@ -184,7 +183,6 @@
 .tab .tab-label { 
     -fx-text-fill: #5D5E60;
     -fx-font-weight: bold;
-  
 }
 .tab {
 	-fx-background-insets: 0, 1, 2;
@@ -196,13 +194,15 @@
 	-fx-border-radius:  9 9 0 0, 4 4 0 0, 2 2 0 0;
 	
 }
-
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+     -fx-alignment: CENTER;
+}
 #tablog{
-	 -fx-background-color: white;
+	-fx-background-color: white;
 }
 
 
-#screenShot_shotBtn,#rpa_wordBtn{ /* 스크린샷 */
+#screenShot_shotBtn,#rpa_wordBtn{ 
 	 -fx-background-color: #7FB1BF;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -211,7 +211,7 @@
  	 -fx-background-radius: 8.0px;
  	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
-#screenShot_shotBtn:hover,#rpa_wordBtn:hover{ /* 스크린샷 */
+#screenShot_shotBtn:hover,#rpa_wordBtn:hover{ 
 	 -fx-background-color: #086A87;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -223,7 +223,7 @@
 
 
 
-#verInfomation{ /*버정정보 */
+#verInfomation{ 
 	 -fx-background-color: #5D5E60;
 	 -fx-border-color: #5D5E60;
 	 -fx-text-fill: #F2F2F2;
@@ -233,7 +233,7 @@
  	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-#verInfomation:hover{/*버정정보 */
+#verInfomation:hover{
 	 -fx-background-color: #5D5E60;
 	 -fx-border-color: #5D5E60;
 	 -fx-text-fill: white;
@@ -252,8 +252,8 @@
 	-fx-text-fill: white;
 }
 
-/*방향키 ================== */
-#directionLbl,#dev_mode,#adb_kill,#hlstest{ /* 방향 리모컨 */
+
+#directionLbl,#dev_mode,#adb_kill,#hlstest{ 
 	  -fx-font-weight: bold;
 }
 #genie_upBtn{
@@ -333,7 +333,7 @@
 }
 
 
-#input_adb{ /* cms연동 모드 버튼 */
+#input_adb{ 
 	 -fx-background-color: #898989;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -343,7 +343,7 @@
 
 }
 
-#input_adb:hover{ /* cms연동 모드 버튼 */
+#input_adb:hover{ 
 	 -fx-background-color: #5D5E60;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -352,7 +352,7 @@
  	 -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 
 }
-#clear_adb{ /* cms연동 모드 버튼 */
+#clear_adb{ 
 	 -fx-background-color: #898989;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;
@@ -362,7 +362,7 @@
 
 }
 
-#clear_adb:hover{ /* cms연동 모드 버튼 */
+#clear_adb:hover{ 
 	 -fx-background-color: #66646A;
 	 -fx-text-fill: #ffffff;
 	 -fx-font-weight: bold;

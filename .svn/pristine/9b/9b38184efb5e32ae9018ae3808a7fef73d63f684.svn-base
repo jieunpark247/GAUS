@@ -37,7 +37,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.scene.control.CheckBox;
 
 public class MainController implements Initializable {
 	Preferences pref;
@@ -48,15 +47,11 @@ public class MainController implements Initializable {
 	String devInfoName;
 	String devlistName;
 	TextArea iptext; 
-	String selectedIP;
-	String devListAr[];
 	// 이벤트 실행 컴포넌트
 	@FXML
 	private Button gnb_connectBtn;
 	@FXML
 	private Button gnb_disConnectBtn;
-	@FXML
-	private Button gnb_disConnectOneBtn;
 	@FXML
 	private Button gnb_pathBtn;
 	@FXML
@@ -101,8 +96,6 @@ public class MainController implements Initializable {
 	private Button verInfomation;
 	@FXML
 	private Button refreshBtn;
-	@FXML
-	private ChoiceBox<String> gnb_choiceOneDev;
 
 	private ObservableList<String> devList = FXCollections.observableArrayList("기가지니", "LTE", "Buddy");
 
@@ -112,19 +105,17 @@ public class MainController implements Initializable {
 		// path setting 값 받아오기
 		pref = Preferences.userNodeForPackage(this.getClass());
 		pref.put("adbPath", "C:/");
-		pref.put("selectedIP", "");
 		String adb = pref.get("adbPath", null);
 		System.out.println("adb 경로 :::::" + pref.get("adbPath", null));
 		if (adb != null) {
 			controller.setAdbPath(adb);
 			System.out.println("adb path set : " + adb);
+
 			gnb_choiceDev.setItems(devList);
-			gnb_choiceDev.getSelectionModel().select(0);
+			gnb_choiceDev.getSelectionModel().selectFirst();
 			packList.setItems(FXCollections.observableArrayList());
 			getDeviceList();
 		} 
-	
-	     
 
 	}
 	
@@ -132,7 +123,13 @@ public class MainController implements Initializable {
 	 * 경고창
 	 */
 	private void showAlert(String val, String spResult) {
-		/*else if (spResult.equals("devices")) {
+		if (spResult.equals("unable")) {
+		 	Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("FAIL");
+			alert.setHeaderText("FAIL!");
+			alert.setContentText(val);
+			alert.showAndWait();
+		}else if (spResult.equals("devices")) {
 			 	Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("디바이스 다중연결");
 				alert.setHeaderText("디바이스 1개만 연결해주세요");
@@ -150,26 +147,12 @@ public class MainController implements Initializable {
 				} else {
 					getDeviceList();
 				}
-		}*/
-		if(spResult.equals("connected") || spResult.equals("already")){
-			Alert alert = new Alert(AlertType.INFORMATION);
-			System.out.println(spResult);
-			alert.setTitle("SUCCESS");
-			alert.setHeaderText(val + "!");
-			alert.setContentText(val + " 성공");
-			alert.showAndWait();
-		}else if(spResult.equals("disConnect")){
-			Alert alert = new Alert(AlertType.INFORMATION);
-			System.out.println(spResult);
-			alert.setTitle("SUCCESS");
-			alert.setHeaderText(val + "!");
-			alert.setContentText(val + " 연결 해제 성공");
-			alert.showAndWait();
 		}else {
-		 	Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("FAIL");
-			alert.setHeaderText("FAIL!");
-			alert.setContentText(val);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			System.out.println(spResult);
+			alert.setTitle("SUCCESS");
+			alert.setHeaderText(val + "!");
+			alert.setContentText(val + "성공");
 			alert.showAndWait();
 		}
 	}
@@ -204,19 +187,21 @@ public class MainController implements Initializable {
 			String result = controller.adbConnect("" + "," + ip); //연결
 			String[] spResult= null;
 	//		getDeviceList();
-			System.out.println("## devCount : " +devCount());
-			if(devCount() >= 1) {
+			System.out.println(">>>>>>>>>>>devCount : " +devCount());
+			if(devCount()==1) {
 				//String result = controller.adbConnect("" + "," + ip);
 				spResult = result.split("\\s");
-				System.out.println(" alert>> "+spResult[0]);
+				System.out.println("alert>>"+spResult[0]);
 				showAlert("Connect ", spResult[0]);
 				getDeviceList();
 			}else if(devCount()==0) {
 				result = controller.adbConnect("" + "," + ip+":5555");
 				spResult = result.split("\\s");
-				System.out.println(" alert>> "+spResult[0]);
+				System.out.println("alert>>"+spResult[0]);
 				showAlert("Connect ", spResult[0]);
 				getDeviceList();
+			}else if(devCount()==2) {
+				showAlert("디바이스", "devices");
 			}
 			
 		}else{
@@ -232,14 +217,7 @@ public class MainController implements Initializable {
 	private void disConnectAction(ActionEvent event) {
 		String result = controller.disConnect();
 		getDeviceList();
-		showAlert("disConnect ", "disConnect");
-	}
-	
-	@FXML
-	private void disConnectOneAction(ActionEvent event) {
-		String result = controller.disConnectOneDevice(gnb_choiceOneDev.getValue());
-		getDeviceList();
-		showAlert("disConnect ", "disConnect");
+		showAlert("disConnect ", "");
 	}
 
 	@FXML
@@ -274,11 +252,8 @@ public class MainController implements Initializable {
 	}
 	
 	public void getDeviceList() {
-		String text ="";
 		String devList = controller.adbDevices();
-		System.out.println("## dev 목록 >> " + devList);
-		
-		gnb_choiceOneDev.getItems().clear(); // 목록 다 삭제 
+		System.out.println("dev 목록 >> " + devList);
 		
 		if(devList.contains("offline")){ //기기에 오프라인글자가 있다면 
 			Alert alert = new Alert(AlertType.WARNING);
@@ -290,26 +265,14 @@ public class MainController implements Initializable {
 			String word[] = devList.split("attached");
 			devList = word[1];
 			String devListAll = devList.replace("device", ""); 
-			devListAr = devListAll.split("\\s");	
-		
-			
+			String devListAr[] = devListAll.split("\\s");			
 			if(devListAr.length == 0) {
 				snb_devList.setText("");
 			}else {
-				ObservableList<String> devListChoiceBox= FXCollections.observableArrayList();
-				for(int i=1;i<devListAr.length; i++){
-					if(i % 2 == 1){	
-						text += "★ "+ devListAr[i] + "\r\n";
-						devListChoiceBox.add(devListAr[i]);
-					}
-				}
-				snb_devList.setText(text);
-				gnb_choiceOneDev.setItems(devListChoiceBox);
-				gnb_choiceOneDev.getSelectionModel().select(0);
+				snb_devList.setText("※ " +devListAr[1]);
 			}
-			
 			if(devCount() >= 2) { //디바이스 개수가 2개이상일 때
-				//showAlert("디바이스", "devices");
+				showAlert("디바이스", "devices");
 			}
 			
 			if (devList.contains("device")) {
@@ -320,45 +283,40 @@ public class MainController implements Initializable {
         }
 	}
 		
-	public void getDeviceInfo() {
-		String text = "";
-		String devList = controller.adbDevices();
-		for(int i=1;i<devListAr.length; i++){
-			if(i % 2 == 1){	
-				System.out.println("123123" + devListAr[i]);
-				String devInfo = controller.modelInfo(" -s " + devListAr[i]);
-				System.out.println("dev 정보 >> " + devInfo);
-		
-				String[] spDevInfo = devInfo.split("\\s");
-		
-				if (devInfo.contains("CT1100")) {
-					text += "★ 기가지니1 ( " + spDevInfo[0] + ")";
-					gnb_choiceDev.setValue("기가지니");
-					//packageList = getPackage();
-				} else if (devInfo.contains("CT1101")) {
-					text += "★ 기가지니2 ( " + spDevInfo[0] + ")";
-					//packageList = getPackage();
-					gnb_choiceDev.setValue("기가지니");
-				} else if (devInfo.contains("GPR100")) {
-					text += "※ LTE ( " + spDevInfo[0] + ")";
-					//packageList = getPackage();
-					gnb_choiceDev.setValue("LTE");
-				} else if(devList.contains("0123456789ABCDEF")){
-					gnb_choiceDev.setValue("Buddy");
-					text += "※ BUDDY";
-				}else {
-					text += spDevInfo[0];
-				}
-				
-				text +=  "\r\n";
 
+	public void getDeviceInfo() {
+		String text = null;
+		String devInfo = controller.modelInfo();
+		String devList = controller.adbDevices();
+		System.out.println("dev 정보 >> " + devInfo);
+		/*
+		 * if(devList.contains("offline")){ //기기에 오프라인글자가 있다면 Alert alert = new
+		 * Alert(AlertType.WARNING); alert.setTitle("Connect Fail");
+		 * alert.setHeaderText("offline 입니다.");
+		 * alert.setContentText("기가지니 전원을 껐다 켜주세요."); alert.showAndWait(); }
+		 */
+		String[] spDevInfo = devInfo.split("\\s");
+
+		if (devInfo.contains("CT1100")) {
+			text = "※ 기가지니1 ( " + spDevInfo[0] + ")";
+			gnb_choiceDev.setValue("기가지니");
+			packageList = getPackage();
+		} else if (devInfo.contains("CT1101")) {
+			text = "※ 기가지니2 ( " + spDevInfo[0] + ")";
+			packageList = getPackage();
+			gnb_choiceDev.setValue("기가지니");
+		} else if (devInfo.contains("GPR100")) {
+			text = "※ LTE ( " + spDevInfo[0] + ")";
+			packageList = getPackage();
+			gnb_choiceDev.setValue("LTE");
+		} else if(devList.contains("0123456789ABCDEF")){
+			gnb_choiceDev.setValue("Buddy");
+			text = "※ BUDDY";
+		}else {
+			text = spDevInfo[0];
 		}
-			
+		
 		snb_devInfo.setText(text);
-	}
-	
-		
-		
 	}
 
 	public ArrayList<String> getPackage() {
@@ -390,8 +348,8 @@ public class MainController implements Initializable {
 		if (packageTab.isSelected()) {
 			System.out.println("packageTab");
 			try {
-				packageList = getPackage();
 				Parent tapCont = FXMLLoader.load(getClass().getResource("/com/glab/app/view/packageView.fxml"));
+
 				packagePane.getChildren().clear();
 				packagePane.getChildren().add(tapCont);
 			} catch (IOException ioe) {
@@ -488,19 +446,6 @@ public class MainController implements Initializable {
 	@FXML
 	private void refreshAction(Event ev) {
 		getDeviceList();
-	}
-	
-	@FXML
-	private void choiceOneDev(Event ev) {
-		if(devCount() >= 1) { //디바이스 개수가 2개이상일 때
-			if(gnb_choiceOneDev.getValue() != ""){
-				selectedIP = gnb_choiceOneDev.getValue();
-				pref.put("selectedIP", " -s " + selectedIP);
-				controller.setOneIP(" -s " + selectedIP);
-			}else if(gnb_choiceOneDev.getValue() == ""){
-				pref.put("selectedIP", "");
-			}
-		}        
 	}
 	
 	

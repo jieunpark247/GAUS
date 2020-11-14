@@ -17,7 +17,7 @@ public class LogController implements Initializable{
 	Preferences pref;
 	String adbPath = null;
 	String logPath = null;
-	
+	String selectedIP = null;
 	@FXML Button log_logBtn;
 	@FXML Button log_logDelBtn;
 	@FXML Button log_logBuddyBtn;
@@ -56,18 +56,26 @@ public class LogController implements Initializable{
 	}
 	
 	@FXML private void logAction(ActionEvent event) {
+		selectedIP = pref.get("selectedIP", null);
+		controller.setOneIP(selectedIP);
+		
 		String result = controller.logPrint(logPath);
 		result = controller.logOpen(logPath);
 	}
 	
 	@FXML private void logDelAction(ActionEvent event) {
+		selectedIP = pref.get("selectedIP", null);
+		controller.setOneIP(selectedIP);
+		
 		String result = controller.logDel();
 	}
 	
 	/*
 	 * 버디 로그 보기
 	 */
-	@FXML private void logBuddyAction(ActionEvent event) { 
+	@FXML private void logBuddyAction(ActionEvent event) { 	
+		selectedIP = pref.get("selectedIP", null);
+	controller.setOneIP(selectedIP);
 		controller.adbPush(pref.get("adbPath", null));
 		System.out.println("log adb push >>>>>>>>>");
 		controller.logBuddy("buddy");
@@ -77,11 +85,13 @@ public class LogController implements Initializable{
 	 * 버디 로그 열기
 	 */
 	@FXML private void logBuddyOpnAction(ActionEvent event) { 
-		
+		selectedIP = pref.get("selectedIP", null);
+		controller.setOneIP(selectedIP);
 		controller.logBuddyOpen(logPath);
 	}
 	
 	@FXML private void logBuddyStartAction(ActionEvent event) { 
+		selectedIP = pref.get("selectedIP", null);
 		controller.logBuddyOpen(logPath);
 	}
 }

@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 public class PackageController implements Initializable {
 
 	AdbController controller = new AdbController();
-
+	String selectedIP = null;
 	@FXML
 	private ListView<String> package_list;
 	@FXML
@@ -37,16 +37,19 @@ public class PackageController implements Initializable {
 	private Button searchall;
 	@FXML
 	private Button search;
+	Preferences pref =  Preferences.userNodeForPackage(this.getClass());
 	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) { // 컨트롤러 로딩 될때 마다
 		System.out.println("package loading ...");
-		Preferences pref =  Preferences.userNodeForPackage(this.getClass());
 		String adb = pref.get("adbPath", null);
 		System.out.println(adb);
 		controller.setAdbPath(adb); // 하드코딩
-
+		
+	
+		
+		
 		package_list.setItems(FXCollections.observableArrayList()); // 초기화
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/glab/app/view/main_View.fxml"));
@@ -57,10 +60,14 @@ public class PackageController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	@FXML
-	public void handleListClick(MouseEvent arg0) {
+	public void handleListClick(MouseEvent arg0) {		
+		selectedIP = pref.get("selectedIP", null);
+		controller.setOneIP(selectedIP);
+		
 		System.out.println("clicked on " + package_list.getSelectionModel().getSelectedItem());
 		String packName = package_list.getSelectionModel().getSelectedItem();
 			if(packName != null) {
@@ -87,6 +94,9 @@ public class PackageController implements Initializable {
 	@FXML
 	private void searchAction(ActionEvent event) {
 		
+		selectedIP = pref.get("selectedIP", null);
+		controller.setOneIP(selectedIP);
+		
 		package_list.setItems(FXCollections.observableArrayList()); // 초기화
 		String packName = searchval.getText().toString(); 
 		Preferences pref =  Preferences.userNodeForPackage(this.getClass());
@@ -103,21 +113,19 @@ public class PackageController implements Initializable {
 	// 전체 검색
 	@FXML
 	private void searchAllAction(ActionEvent event) {
+		selectedIP = pref.get("selectedIP", null);
+		controller.setOneIP(selectedIP);
+		
 		Preferences pref =  Preferences.userNodeForPackage(this.getClass());
 		String adb = pref.get("adbPath", null);
 		System.out.println(adb);
 		controller.setAdbPath(adb); // 하드코딩
-
+		
 		package_list.setItems(FXCollections.observableArrayList()); // 초기화
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/glab/app/view/main_View.fxml"));
-			Parent root = loader.load();
-			ListView<String> temp = (ListView) loader.getNamespace().get("packList");
-			package_list.setItems(temp.getItems());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ArrayList<String> pack = null;
+		pack = controller.loadPackage();
+		ObservableList<String> observableList = FXCollections.observableList(pack);
+		package_list.setItems(observableList);
 		
 	}
 	

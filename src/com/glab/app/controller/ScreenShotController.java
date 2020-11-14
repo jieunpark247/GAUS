@@ -20,13 +20,14 @@ public class ScreenShotController implements Initializable {
 	AdbController controller = new AdbController();
 	Preferences pref;
 	String shotPath = null;
-	
+	String selectedIP = null;
 	@FXML Button screenShot_shotBtn;
 	@FXML ImageView screenShot_imgView;
 	@FXML TextArea screenShot_imgpathArea;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) { // 컨트롤러 로딩 될때 마다
+		
 		System.out.println("sshot loading ...");
 		//path setting 값 받아오기
         pref = Preferences.userNodeForPackage(this.getClass());
@@ -42,6 +43,10 @@ public class ScreenShotController implements Initializable {
 	}
 	
 	@FXML private void screenShotAction(ActionEvent event) throws UnknownHostException {
+		
+		selectedIP = pref.get("selectedIP", null);
+		controller.setOneIP(selectedIP);
+		
 		String result = controller.screenShot(shotPath);
 		
 		screenShot_imgpathArea.clear();

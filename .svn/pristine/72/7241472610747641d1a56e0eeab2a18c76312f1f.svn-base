@@ -32,9 +32,7 @@ public class verPopUpController implements Initializable{
 		info.add("19.07.18 LTE2 기능 추가 ");
 		info.add("19.09~10 adb path 강제 C:/로 추가");
 		info.add("19.11.25 발화 enter시 mic버튼과 같은 기능 추가");
-		info.add("20.02.04 로그 실행시 가우스 실행 가능하게 추가");
-		info.add("20.03.16 AppID K로 시작할때 바로가기 수정 , 개발자모드 해제 수정 ");
-		info.add("20.03.18 여러기기 제어 할 수 있는 기능 추가 , 추가 기능 + (한글 변환 , MC패딩서버, app개발자모드  )  ");
+
 		info.forEach(str -> {
 			verInfo.appendText(str + "\n");
 			System.out.println(str);

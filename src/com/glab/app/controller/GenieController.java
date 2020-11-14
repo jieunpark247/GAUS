@@ -24,6 +24,7 @@ public class GenieController implements Initializable{
 	
 	AdbController controller = new AdbController();
 	String adbPath = null;
+	String selectedIP = null;
 	Preferences pref;
 
 	@FXML private Button genie_gTestBtn;
@@ -46,6 +47,9 @@ public class GenieController implements Initializable{
 	@FXML private Button genie_kill;
 	@FXML private Button genie_devModeoffBtn;
 	@FXML private Button micBtn;
+	@FXML private Button genie_goBtn;
+	@FXML private Button genie_mcConfig;
+	@FXML private Button genie_exit;
 	
 	private ObservableList<String> appList = FXCollections.observableArrayList("101: 팟캐스트 (E5000799)", "102 : 핑크퐁 (E5001176)", "103 : 번역하기(E5001154)", "104 : 파고다생활영어 (E5000788)",
     		"105 : 구구단연습 (E5001339)", "106 :수도맞추기 (E5001340)", "107 : 스피드연산 (E5001341)", "108 : 나라맞추기 (E5001342)", 
@@ -55,8 +59,9 @@ public class GenieController implements Initializable{
     		"124 : SERI CEO (E5001972)", "125 : 명상 (E5001338)", "126 : 핑크퐁동화극장 (E5001349)", "127 : 핑크퐁 중국어 (E5001348)", 
     		"128 : 도레미 게임 (E5002242)", "129: 토리코리 세계여행 (E5002241)", "130 : 순간포착 게임 (E5002240)", "131 : 공룡메카드(E5002239)", 
     		"132 : 성경 (E5002238)", "133 : 불교 (E5002237)", "134 : 만개의 레시피(E5002236)", "135 : 핑크퐁 따라말하기 (E5002309)", 
-    		"136 : 동화 오디오북 (E5002391)", "137 :소리동화 (E5002393)", "139 : 홈 트레이닝 (E5002488)",
-  			"140 : 루틴 (E5002495)", " 팟캐스트 (E5000799)", " 요리 레시피(E5001997) ", " 소리동화 (E5001219)","145 : 천주교 (5002937)","직접입력");
+    		"136 : 동화 오디오북 (E5002391)", "137 :소리동화 (E5001219)", "139 : 홈 트레이닝 (E5002488)",
+  			"140 : 루틴 (E5002495)", " 팟캐스트 (E5000799)", " 요리 레시피(E5001997) ","145 : 천주교 (E5002937)","g157 : 멀티캠퍼스 (K5003141)","g161 :지니야 놀자(K5004027)",  			
+  			"g162 : 생일축하인(K5004028)","직접입력");
  
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) { // 컨트롤러 로딩 될때 마다
@@ -65,7 +70,7 @@ public class GenieController implements Initializable{
         pref = Preferences.userNodeForPackage(this.getClass());
         adbPath = pref.get("adbPath", null);
         controller.setAdbPath(adbPath);
-        
+       
 		genie_comboApp.setItems(appList); // appId 리스트 등록
 		genie_comboApp.getSelectionModel().selectLast();
 		
@@ -86,6 +91,10 @@ public class GenieController implements Initializable{
 	
 	@FXML
 	private void gtestAction(ActionEvent event) {
+		
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
+	    
 		String result = null;
 		String appId = "E5000634";
 		String intent = "callTitle";
@@ -116,12 +125,18 @@ public class GenieController implements Initializable{
 	/*
 	 * 앱id , 인텐트 입력
 	 */
-	private void intent(){
+	private void intent(int flag){
+        selectedIP = pref.get("selectedIP", null);
+        controller.setOneIP(selectedIP);
+        
 		String appId = " ";
 		String intent = " ";
 		
 		if(genie_comboApp.getSelectionModel().getSelectedItem().toString() == "직접입력"){
-			appId = genie_appIdFld.getText().toString(); 
+			if(genie_appIdFld.getText().toString().contains("K")){
+				appId = genie_appIdFld.getText().toString();
+			}
+			
 		}else{
 			String selectedApp =  genie_comboApp.getSelectionModel().getSelectedItem().toString();
 			String[] word = selectedApp.split("\\(");			//104 : 파고다생활영어 (E5000788) 에서 (로 자르기
@@ -129,21 +144,40 @@ public class GenieController implements Initializable{
 		}
 		
 		intent = genie_intentFld.getText().toString(); 
-		System.out.println("appId , intent >>"+appId+" , "+intent);
-		
+		System.out.println("appId , intent >> "+appId+" , "+intent);
+		controller.exit();
+		controller.devModeOff();
+		try { Thread.sleep(500); } catch (InterruptedException e) { e.printStackTrace();}
 		controller.devMode();
 		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace();}
+		
+		//String selectedAppString =  genie_comboApp.getSelectionModel().getSelectedItem().toString();
+		if(appId.contains("K")){
+			try {
+				controller.keyEvent("downBtn");
+			//	try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace();}
+			} catch (UnknownHostException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		appId = appId.substring(1,appId.length());
 		controller.cmsInput(appId);
-		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace();}
+	//	try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace();}
 		controller.cmsCall();
-		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace();}
-		controller.callIntent(appId+","+intent);
+		if(flag == 1){
+			//try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace();}
+			controller.callIntent(appId+","+intent);			
+		}
 	}
 	
 	/*
 	 * 발화 입력
 	 */
 	private void tts(){
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
+	        
 		String result = null;
     	String input = null;
     	
@@ -158,6 +192,9 @@ public class GenieController implements Initializable{
 	 * 입력값
 	 */
 	private void input(){
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
+	      
 		String result = null;
     	String input = null;
     	
@@ -165,12 +202,19 @@ public class GenieController implements Initializable{
     	result = controller.textInput(input);
     	System.out.println(result);
 	}
+	
+	private void goAppId(){
+		selectedIP = pref.get("selectedIP", null);
+		controller.goApp(selectedIP);
+	}
 
 	
 	@FXML
 	private void devModeAction(ActionEvent event) {
+		selectedIP = pref.get("selectedIP", null);
+        controller.setOneIP(selectedIP);
+        
 		System.out.println(genie_devModeBtn);
-		System.out.println("--->");
 		System.out.println(event);
 		String result = null;
 		result = controller.devMode();
@@ -179,6 +223,9 @@ public class GenieController implements Initializable{
 	
 	@FXML
 	private void devModeOffAction(ActionEvent event) {
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
+		
 		System.out.println(genie_devModeBtn);
 		System.out.println("--->");
 		System.out.println(event);
@@ -190,7 +237,8 @@ public class GenieController implements Initializable{
 	
 	@FXML
     private void intentAction(ActionEvent event){
-		 intent();
+			goAppId();
+		 //intent(1);
     }
 	
 	
@@ -207,6 +255,10 @@ public class GenieController implements Initializable{
 	
 	@FXML
     private void delAction(ActionEvent event){
+		
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
+	    
 		String result = null;
     	result = controller.textClear();
     	System.out.println(result);
@@ -214,6 +266,9 @@ public class GenieController implements Initializable{
 	
 	@FXML
     private void upAction(ActionEvent event) throws UnknownHostException{
+		
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
 		String result = null;
     	result = controller.keyEvent("upBtn");
     	System.out.println(result);
@@ -221,6 +276,8 @@ public class GenieController implements Initializable{
 	
 	@FXML
     private void leftAction(ActionEvent event) throws UnknownHostException{
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
 		String result = null;
     	result = controller.keyEvent("leftBtn");
     	System.out.println(result);
@@ -228,6 +285,8 @@ public class GenieController implements Initializable{
 	
 	@FXML
     private void downAction(ActionEvent event) throws UnknownHostException{
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
 		String result = null;
     	result = controller.keyEvent("downBtn");
     	System.out.println(result);
@@ -235,6 +294,8 @@ public class GenieController implements Initializable{
 	
 	@FXML
     private void rightAction(ActionEvent event) throws UnknownHostException{
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
 		String result = null;
     	result = controller.keyEvent("rightBtn");
     	System.out.println(result);
@@ -242,6 +303,8 @@ public class GenieController implements Initializable{
 	
 	@FXML
     private void pressAction(ActionEvent event) throws UnknownHostException{
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
 		String result = null;
     	result = controller.keyEvent("pressBtn");
     	System.out.println(result);
@@ -249,12 +312,16 @@ public class GenieController implements Initializable{
 	
 	@FXML
     private void backAction(ActionEvent event) throws UnknownHostException{
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
 		String result = null;
     	result = controller.keyEvent("backBtn");
     	System.out.println(result);
     }
 	@FXML
 	private void killAction(ActionEvent event) throws UnknownHostException{
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
 		String result = null;
 		result = controller.devKill();
 		System.out.println(result);
@@ -262,6 +329,8 @@ public class GenieController implements Initializable{
 	
 	@FXML
 	private void micAction(ActionEvent event) throws UnknownHostException{
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
 		String result = null;
     	String input = null;
     	
@@ -269,6 +338,28 @@ public class GenieController implements Initializable{
     	input = input.replace(" ", "\\ ");
 
 		result = controller.micttsCall(input);
+		System.out.println(result);
+	}
+	
+	@FXML
+	private void goAction(ActionEvent event) throws UnknownHostException{
+	    intent(0);
+	}
+	
+	@FXML
+	private void mcConfigAction(ActionEvent event) throws UnknownHostException{
+		selectedIP = pref.get("selectedIP", null);
+	    controller.setOneIP(selectedIP);
+	    
+		String result = null;
+		controller.mcConfig();
+		System.out.println(result);
+	}
+	
+	@FXML
+	private void exitAction(ActionEvent event) throws UnknownHostException{
+		String result = null;
+		controller.exit();
 		System.out.println(result);
 	}
 

@@ -87,6 +87,20 @@ public class CmdService {
 		return null;
 	}
 	
+	public String onlyExecCommand(String command) {
+		System.out.println(command);//sysout
+		process = null;
+		bufferedReader = null;
+		readBuffer = null;
+		try {
+			process = Runtime.getRuntime().exec(command);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.exit(1);			//stream closed되면 exit 처리
+		}
+		return null;
+	}
+	
 	public String execCmdUtter(String command) {
 		System.out.println(command);//sysout
 		process = null;
@@ -226,6 +240,30 @@ public class CmdService {
 		readBuffer = null;
 		try {
 	             String [] command = {"cmd.exe", "/c" ,"start" , "cmd.exe" , "/k" , "C:\\GAUS\\buddy_log.bat"}	;     
+	             Runtime.getRuntime( ).exec(command);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.exit(1);			//stream closed되면 exit 처리
+		} finally {
+            try {
+              //  process.destroy();
+                if (bufferedReader != null) bufferedReader.close();
+                if (readBuffer != null) bufferedReader.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+			System.out.println("finally");
+        }
+		return null;
+	}
+	
+	public String appCommand() {
+		process = null;
+		bufferedReader = null;
+		readBuffer = null;
+		try {
+	             String [] command = {"cmd.exe", "/c" ,"start" , "cmd.exe" , "/k" , "C:\\GAUS\\bash\\goApp.sh"}	;     
 	             Runtime.getRuntime( ).exec(command);
 
 		} catch (Exception e) {
